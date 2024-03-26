@@ -1,4 +1,4 @@
-# github.com/bitrise-io/go-steputils/v2 v2.0.0-alpha.28.0.20240326130657-800343f91803
+# github.com/bitrise-io/go-steputils/v2 v2.0.0-alpha.28.0.20240326163733-c30fdb308c1d
 ## explicit; go 1.17
 github.com/bitrise-io/go-steputils/v2/cache
 github.com/bitrise-io/go-steputils/v2/cache/compression
