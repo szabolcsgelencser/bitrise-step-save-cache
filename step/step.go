@@ -13,12 +13,13 @@ import (
 )
 
 type Input struct {
-	Verbose          bool   `env:"verbose,required"`
-	Key              string `env:"key,required"`
-	Paths            string `env:"paths,required"`
-	IsKeyUnique      bool   `env:"is_key_unique"`
-	CompressionLevel int    `env:"compression_level,range[1..19]"`
-	CustomTarArgs    string `env:"custom_tar_args"`
+	Verbose            bool            `env:"verbose,required"`
+	Key                string          `env:"key,required"`
+	Paths              string          `env:"paths,required"`
+	IsKeyUnique        bool            `env:"is_key_unique"`
+	CompressionLevel   int             `env:"compression_level,range[1..19]"`
+	CustomTarArgs      string          `env:"custom_tar_args"`
+	EncryptionPassword stepconf.Secret `env:"encryption_password"`
 }
 
 type SaveCacheStep struct {
@@ -55,12 +56,13 @@ func (step SaveCacheStep) Run() error {
 
 	saver := cache.NewSaver(step.envRepo, step.logger, step.pathProvider, step.pathModifier, step.pathChecker, nil)
 	return saver.Save(cache.SaveCacheInput{
-		StepId:           "save-cache",
-		Verbose:          input.Verbose,
-		Key:              input.Key,
-		Paths:            strings.Split(input.Paths, "\n"),
-		IsKeyUnique:      input.IsKeyUnique,
-		CompressionLevel: input.CompressionLevel,
-		CustomTarArgs:    strings.Fields(input.CustomTarArgs),
+		StepId:             "save-cache",
+		Verbose:            input.Verbose,
+		Key:                input.Key,
+		Paths:              strings.Split(input.Paths, "\n"),
+		IsKeyUnique:        input.IsKeyUnique,
+		CompressionLevel:   input.CompressionLevel,
+		CustomTarArgs:      strings.Fields(input.CustomTarArgs),
+		EncryptionPassword: input.EncryptionPassword,
 	})
 }

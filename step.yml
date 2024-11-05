@@ -138,3 +138,9 @@ inputs:
     value_options:
     - "true"
     - "false"
+
+- encryption_password:
+  opts:
+    title: Encryption password
+    summary: The password used to generate the encryption key for AES-256-CBC encryption.
+    description: The password used to generate the encryption key for AES-256-CBC encryption.
